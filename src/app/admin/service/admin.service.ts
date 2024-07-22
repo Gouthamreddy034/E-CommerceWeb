@@ -18,8 +18,37 @@ export class AdminService {
     })
   }
 
+  getAllCategories():Observable<any>{
+    return this.http.get(BASIC_URL + 'api/admin',{
+      headers: this.createAuthorizationHeader(),
+    })
+  }
+
+  addProduct(productDto:any):Observable<any>{
+    return this.http.post(BASIC_URL + 'api/admin/product',productDto,{
+      headers: this.createAuthorizationHeader(),
+    })
+  }
+
+  getAllProducts():Observable<any>{
+    return this.http.get(BASIC_URL + 'api/admin/products',{
+      headers: this.createAuthorizationHeader(),
+    })
+  }
+
+  getAllProductsByName(name:any):Observable<any>{
+    return this.http.get(BASIC_URL + `api/admin/search/${name}`,{
+      headers: this.createAuthorizationHeader(),
+    })
+  }
+
+  deleteProduct(productId:any):Observable<any>{
+    return this.http.delete(BASIC_URL + `api/admin/product/${productId}`,{
+      headers: this.createAuthorizationHeader(),
+    })
+  }
+
   private createAuthorizationHeader():HttpHeaders{
-    console.log(UserStorageService.getToken())
     return new HttpHeaders().set(
       'Authorization','Bearer ' + UserStorageService.getToken()
     )
