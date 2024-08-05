@@ -32,6 +32,17 @@
       <button mat-raised-button color="primary">Place Order</button>
     </div>
   </div>
+
+  <div class="container">
+    <form [formGroup]="couponForm" (ngSubmit)="applyCoupon()">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Code</mat-label>
+        <input matInput type="text" placeholder="Code" formControlName="code">
+        <mat-error *ngIf="couponForm.get('code')?.hasError('required')">This input is required!</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Apply Coupon</button>
+    </form>
+  </div>
 </div>
 <ng-template #emptyCart>
   <div class="empty-cart">
