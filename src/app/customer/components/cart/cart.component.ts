@@ -52,4 +52,11 @@ export class CartComponent {
       }
     )
   }
+
+  increaseQuantity(productId:any){
+    this.customerService.increaseProductQuantity(productId).subscribe(res=>{
+      this.snackBar.open('Product Quantity Increased','Close',{duration:5000});
+      this.getCart();
+    })
+  }
 }
